@@ -31,7 +31,6 @@ class ExpenseController extends Controller
         'entry_date' => $validatedData['entry_date'],
     ]);
 
-    // هذا السطر يمنع الصفحة البيضاء ويعيدك للرئيسية
     return redirect()->route('dashboard');
 }
     public function create()
