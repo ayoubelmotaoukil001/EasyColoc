@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ExpensCOntroller ;
+use App\Http\Controllers\ExpenseController ;
 use Termwind\Components\Raw;
 
 Route::get('/', function () {
@@ -20,7 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware('auth') ->group( function (){
-    Route::get('/expenses/create',[ExpensCOntroller::class,'create'])->name('expenses.create') ;
-    Route::post('/expenses' ,[ExpensCOntroller::class ,'store'])->name('expenses.store');
+    Route::get('/expenses/create',[ExpenseController::class,'create'])->name('expenses.create') ;
+    Route::post('/expenses' ,[ExpenseController::class ,'store'])->name('expenses.store');
 }) ;
+
+Route::resource('categories',CategoryController::class) ;
 require __DIR__.'/auth.php';
